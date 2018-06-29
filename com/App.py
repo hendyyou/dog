@@ -9,4 +9,4 @@ from com.login.Login import Login
 
 # 0.登陆
 login = Login()
-login.go("18569000038","tanjun19940709")
+login.go("账号","密码")

@@ -44,7 +44,7 @@ class Login:
             offset = self.cutting.go(self.checkimgname)
             if offset == None:
                 print "无法识别图片验证码答案,回到第一步"
-                #self.downloadimg()
+                self.downloadimg()
             self.position = offset
         except Exception,e:
             print "获取图片验证码答案异常,重新尝试"
@@ -52,7 +52,7 @@ class Login:
             self.getPosition()
         else:
             print "获取图片验证码答案成功,继续下一步"
-            #self.submitCheck()
+            self.submitCheck()
 
 
     # 提交图片验证
@@ -74,11 +74,11 @@ class Login:
         else:
             if self.checkResponse.get("result_code") == "4":  # 验证码 验证成功,开始执行登陆
                 print "验证成功,继续下一步"
-                # self.landing()
+                self.landing()
             else:
                 print "验证失败,回到第一步"
                 self.http = Http() # 换一下session 防止出现较难的验证码
-                #self.downloadimg()
+                self.downloadimg()
 
     # 登陆
     def landing(self):
