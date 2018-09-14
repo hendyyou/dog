@@ -6,20 +6,21 @@
 # @User  : tanjun
 # @Desc  : 创建一个整体使用的session对象
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
 # 禁用安全请求警告
+from urllib3.exceptions import InsecureRequestWarning
+
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-# http 请求工具
-class Http:
+# http 请求工具 verify=False 不检查证书
+class HttpClientUtils:
     def __init__(self):
         self.httpJson = {
             "session": requests.session(),
             "headers": {
                 "Accept": "application/json, text/javascript, */*; q=0.01",
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "Origin": "https://kyfw.12306.cn",
-                "Referer": "https://kyfw.12306.cn/otn/login/init",
+                "Origin": "https://kyfw.http12306.cn",
+                "Referer": "https://kyfw.http12306.cn/otn/login/init",
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36",
                 "X-Requested-With": "XMLHttpRequest"
             }
@@ -27,7 +28,7 @@ class Http:
     # 发出http get 请求
     def get(self,url):
         session = self.httpJson.get("session")
-        return session.get(url=url)
+        return session.get(url=url,verify=False)
 
     # 发送http post 请求
     def  post(self,url,data):
