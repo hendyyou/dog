@@ -27,7 +27,6 @@ class CheckImg:
         except Exception, e:
             print "下载图片验证码异常,重新尝试"
             print e
-            config["http"] = HttpClientUtils() # 重新设置http对象 防止出现复杂验证码
             return self.downloadimg(config)
 
     # 获取图片验证位置
@@ -57,6 +56,7 @@ class CheckImg:
                 return answer
             else:
                 print "验证失败,回到第一步"
+                config["http"] = HttpClientUtils()  # 重新设置http对象 防止出现复杂验证码
                 return self.downloadimg(config)
         except Exception, e:
             print "提交图片验证码答案异常,回到第一步"

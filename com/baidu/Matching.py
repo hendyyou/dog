@@ -50,7 +50,7 @@ class Matching:
                 temp = self.participle(problemStr, answers[i]) # 分词匹配
 
             if temp != False: # 最终匹配成功
-                answerStr = answerStr + Config.position.get(str(i + 1)) + ","
+                answerStr = answerStr + Config.imgOrderPosition.get(str(i + 1)) + ","
                 chineseStr = chineseStr + temp + ","
         if answerStr == "":
             return None
@@ -67,7 +67,7 @@ class Matching:
             # 2识别回答
             answers = []
             for i in range(8):
-                retClassify = self.ClassifyApi.classify(Config.localimgpath + str(i) + Config.imgSuffix)
+                retClassify = self.ClassifyApi.classify(Config.localimgpath + str(i + 1) + Config.imgSuffix)
                 answers.append(retClassify)
             # 3匹配答案
             ret = self.all(retOcr, answers)

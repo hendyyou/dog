@@ -8,8 +8,10 @@
 
 from com.utils.Client12306Utils import Client12306Utils
 from com.service.check.CheckImg import CheckImg
+from com.utils.HttpClientUtils import HttpClientUtils
 from com.config.Config import Config
 from com.utils.MysqlUtils import MysqlUtils
+import hashlib
 class CollectData:
     def __init__(self):
         self.CheckImg = CheckImg()
@@ -18,9 +20,11 @@ class CollectData:
     # 登陆
     def go(self,config):
         try:
+            config["http"] = HttpClientUtils()  # 重新设置http对象 防止出现复杂验证码
             answer = self.CheckImg.go(config)
-            #sqls = self.getMd5(answer)
-            #self.writeDb(sqls)
+            sqls = self.getMd5(answer)
+            self.writeDb(sqls)
+            self.go()
         except Exception,e:
             print "保存到数据库异常,回到第一步"
             print e
