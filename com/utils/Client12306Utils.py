@@ -44,4 +44,4 @@ class Client12306Utils:
                "&leftTicketDTO.to_station=" + end + \
                "&purpose_codes=ADULT" #默认成人票
         response = http.get(path)
-        return json.loads(response.content);
+        return json.loads(response.content).get("data").get("result")

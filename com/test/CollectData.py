@@ -24,7 +24,7 @@ class CollectData:
             answer = self.CheckImg.go(config)
             sqls = self.getMd5(answer)
             self.writeDb(sqls)
-            self.go()
+            self.go(config)
         except Exception,e:
             print "保存到数据库异常,回到第一步"
             print e
