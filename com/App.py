@@ -11,8 +11,8 @@ from com.test.CollectData import CollectData
 from com.utils.Client12306Utils import Client12306Utils
 from com.service.show.ShowTickeList import ShowTickeList
 config = { # 固定格式
-    "username":"18569000038",
-    "password":"tanjun19940709",
+    "username":"",
+    "password":"",
     "http": None # 这个session对象需要全程用来访问请求,因为验证通过是与session绑定的,再每次提交验证失败后会重新创建session为了防止出现复杂验证码
 }
 # 开始登陆
