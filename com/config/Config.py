@@ -23,8 +23,8 @@ class Config:
     mysqlconfig = { # mysql 数据库连接配置
         "host": "118.126.102.79",
         "port": 3306,
-        "user": "root",
-        "password": "tanjun1994",
+        "user": "js1688dog",
+        "password": "js1688dog",
         "db": "tanjun",
         "charset": "utf8mb4",
         "cursorclass": pymysql.cursors.DictCursor,
