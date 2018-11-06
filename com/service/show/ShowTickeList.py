@@ -22,4 +22,5 @@ class ShowTickeList:
                       ",二等座:" + cols[30] + \
                       ",一等座:" + cols[31] + \
                       ",商务座/特等座:" + cols[32] + \
-                      ",无座:" + cols[26]
+                      ",无座:" + cols[26] + \
+                      ",ticketId:" + cols[0]

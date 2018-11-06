@@ -7,15 +7,17 @@
 # @Desc  : 下载验证码并验证一系列操作
 
 from com.utils.Client12306Utils import Client12306Utils
-from com.baidu.Matching import Matching
+from com.decrypt.baidu.Matching import Matching
 from com.utils.HttpClientUtils import HttpClientUtils
-
+from com.decrypt.mysql.IdentifyImg import IdentifyImg
 from com.utils.CuttingUtils import CuttingUtils
 class CheckImg:
     def __init__(self):
         self.Client12306Utils = Client12306Utils()
         self.Matching = Matching()
         self.CuttingUtils = CuttingUtils()
+        self.IdentifyImg = IdentifyImg()
+
     # 下载图片验证码并裁剪
     def downloadimg(self,config):
         print "1.下载图片验证码"
@@ -33,8 +35,11 @@ class CheckImg:
     def getPosition(self,config):
         print "2.获取图片验证码答案"
         try:
-            # 1从百度获取答案
-            answer = self.Matching.go()
+            # 1从数据库获取答案
+            answer = self.IdentifyImg.go()
+            if answer == None:
+                # 2从百度获取答案
+                answer = self.Matching.go()
             if answer == None:
                 print "无法识别图片验证码答案,回到第一步"
                 return self.downloadimg(config)

@@ -5,8 +5,8 @@
 # @Date  : 2018/6/28
 # @User  : tanjun
 # @Desc  : 百度匹配答案
-from com.baidu.ClassifyApi import ClassifyApi
-from com.baidu.OcrApi import OcrApi
+from com.decrypt.baidu.ClassifyApi import ClassifyApi
+from com.decrypt.baidu.OcrApi import OcrApi
 from com.config.Config import Config
 
 
@@ -32,12 +32,11 @@ class Matching:
         for i in range(0, strsize, 3):
             for j in answer:
                 ansize = len(j.get("keyword"))
-                if ansize == strsize:  # 长度是否一致
-                    p = problemStr[i:i + 3]
-                    for k in range(0,ansize,3):
-                        a = j.get("keyword")[k:k + 3]
-                        if(p == a):
-                            return j.get("keyword")
+                p = problemStr[i:i + 3]
+                for k in range(0, ansize, 3):
+                    a = j.get("keyword")[k:k + 3]
+                    if (p == a):
+                        return j.get("keyword")
         return False
 
     # 综合所有情况匹配验证码答案
@@ -68,7 +67,8 @@ class Matching:
             answers = []
             for i in range(8):
                 retClassify = self.ClassifyApi.classify(Config.localimgpath + str(i + 1) + Config.imgSuffix)
-                answers.append(retClassify)
+                if retClassify != None:
+                    answers.append(retClassify)
             # 3匹配答案
             ret = self.all(retOcr, answers)
             if ret != None:

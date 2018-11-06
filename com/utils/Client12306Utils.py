@@ -45,3 +45,29 @@ class Client12306Utils:
                "&purpose_codes=ADULT" #默认成人票
         response = http.get(path)
         return json.loads(response.content).get("data").get("result")
+
+    # 检查账户是否登陆
+    def checkUser(self,http):
+        response = http.get(Config.checkUser)
+        return json.loads(response.content).get("data").get("flag")
+
+    # 提交选票
+    def submitTicket(self,http,ticketId,dateStr,startName,endName):
+        param = {
+            'secretStr': ticketId, #车次id
+            'train_date': dateStr, #坐车时间
+            'back_train_date': dateStr,
+            'tour_flag': 'dc',
+            'purpose_codes': 'ADULT',#默认成人票
+            'query_from_station_name': startName, #始发站中文
+            'query_to_station_name': endName #终点站中文
+        }
+        response = http.post(Config.submitTicket, param)
+        return json.loads(response.content)
+
+    # 获取客户信息
+    def getPassenger(self,http):
+        response = http.get(Config.getPassenger)
+        return json.loads(response.content).get("data").get("normal_passengers")
+
+

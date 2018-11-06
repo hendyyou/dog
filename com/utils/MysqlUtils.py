@@ -30,3 +30,11 @@ class MysqlUtils:
                 connection.commit()
         finally:
             connection.close()
+
+    #查询数据
+    def querySql(self,sql,param):
+        connection = self.getConnect()
+        with connection.cursor() as cursor:
+            cursor.execute(sql,param)
+            return cursor
+

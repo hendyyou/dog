@@ -13,10 +13,13 @@ class Config:
     downloadimgurl = "https://kyfw.12306.cn/passport/captcha/captcha-image?login_site=E&module=login&rand=sjrand"  # 验证码图片下载地址 get
     submitimgurl = "https://kyfw.12306.cn/passport/captcha/captcha-check"  # 图片验证码提交地址 post
     landingurl = "https://kyfw.12306.cn/passport/web/login"  # 登陆地址 post
-    queryTicketurl = "https://kyfw.12306.cn/otn/leftTicket/queryA" # 查票地址 get 需要带明文条件
+    queryTicketurl = "https://kyfw.12306.cn/otn/leftTicket/query" # 查票地址 get 需要带明文条件
     localimgpath = "/Users/tanjun/Desktop/img/"  # 本地图片缓存的绝对路径
     localproblemimgUrl = localimgpath + "problem" + imgSuffix  # 本地缓存验证码提问图片名称
     localCheckImg = localimgpath + "checkimg" + imgSuffix  # 验证码图片保存名称
+    checkUser = "https://kyfw.12306.cn/otn/login/checkUser" # 检查用户是否登陆
+    submitTicket = "https://kyfw.12306.cn/otn/leftTicket/submitOrderRequest" # 提交选票
+    getPassenger = "https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs" # 获取客户信息
     mysqlconfig = { # mysql 数据库连接配置
         "host": "118.126.102.79",
         "port": 3306,
